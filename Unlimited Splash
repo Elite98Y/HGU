@@ -4,81 +4,66 @@ gui.Parent = game.CoreGui
 
 --///patrick gui maker///--
 
-
 -- put your mainframe into the screengui that I have made (frame.Parent = gui) 
 
-local TB = Instance.new("TextButton")
-TB.Size = UDim2.new(0.05, 0, 0.1, 0)
-TB.Position = UDim2.new(0.68, 0, 0.53, 0)
-TB.BackgroundColor3 = Color3.new(0, 0, 0)
-TB.BorderColor3 = Color3.new(1, 1, 1)
-TB.BorderSizePixel = 3
-TB.Text = "F"
-TB.BackgroundTransparency = 0 
-TB.MouseButton1Click:connect(function()
-local player = game:GetService("Players").LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local head = character:WaitForChild("Head")
+-- First Button ("F" - EmeraldProjectile2)
+local TB1 = Instance.new("TextButton")
+TB1.Size = UDim2.new(0.05, 0, 0.1, 0)
+TB1.Position = UDim2.new(0.68, 0, 0.53, 0)
+TB1.BackgroundColor3 = Color3.new(0, 0, 0)
+TB1.BorderColor3 = Color3.new(1, 1, 1)
+TB1.BorderSizePixel = 3
+TB1.Text = "F"
+TB1.BackgroundTransparency = 0 
+TB1.TextColor3 = Color3.new(1, 1, 1)
+TB1.TextSize = 20
+TB1.Font = Enum.Font.Code
+TB1.Parent = gui
 
-local offsetDistance = 25
+TB1.MouseButton1Click:Connect(function()
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local head = character:WaitForChild("Head")
 
--- Get the exact look direction from the head (including vertical)
-local lookVector = head.CFrame.LookVector
+    local offsetDistance = 25
 
--- Calculate spawn position a bit in front of the head, in the direction you are facing
-local spawnPosition = head.CFrame.Position + lookVector * offsetDistance
+    -- Get the exact look direction from the head (including vertical)
+    local lookVector = head.CFrame.LookVector
 
--- Create a CFrame at spawnPosition, facing exactly the same direction as the head
-local shardCFrame = CFrame.new(spawnPosition, spawnPosition + lookVector)
-for i = 1, 20 do
-local args = {
-    "Alternate",
-    "EmeraldProjectile2",
-    false,
-    shardCFrame
-}
+    -- Calculate spawn position a bit in front of the head, in the direction you are facing
+    local spawnPosition = head.CFrame.Position + lookVector * offsetDistance
 
-game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
-end
+    -- Create a CFrame at spawnPosition, facing exactly the same direction as the head
+    local shardCFrame = CFrame.new(spawnPosition, spawnPosition + lookVector)
+    for i = 1, 20 do
+        local args = {
+            "Alternate",
+            "EmeraldProjectile2",
+            false,
+            shardCFrame
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+    end
 end)
-TB.TextColor3 = Color3.new(255, 255, 255)
-TB.TextSize = 20
-TB.Font = Enum.Font.Code
-TB.Parent = gui
-local gui = Instance.new("ScreenGui")
-gui.Name = "patrickGui"
-gui.Parent = game.CoreGui
 
---///patrick gui maker///--
+-- Second Button ("X" - Block)
+local TB2 = Instance.new("TextButton")
+TB2.Size = UDim2.new(0.05, 0, 0.1, 0)
+TB2.Position = UDim2.new(0.24, 0, 0.8, 0)
+TB2.BackgroundColor3 = Color3.new(0, 0, 0)
+TB2.BorderColor3 = Color3.new(1, 1, 1)
+TB2.BorderSizePixel = 3
+TB2.Text = "X"
+TB2.BackgroundTransparency = 0 
+TB2.TextColor3 = Color3.new(1, 1, 1)
+TB2.TextSize = 20
+TB2.Font = Enum.Font.Code
+TB2.Parent = gui
 
-
--- put your mainframe into the screengui that I have made (frame.Parent = gui) 
-
-local gui = Instance.new("ScreenGui")
-gui.Name = "patrickGui"
-gui.Parent = game.CoreGui
-
---///patrick gui maker///--
-
-
--- put your mainframe into the screengui that I have made (frame.Parent = gui) 
-
-local TB = Instance.new("TextButton")
-TB.Size = UDim2.new(0.05, 0, 0.1, 0)
-TB.Position = UDim2.new(0.24, 0, 0.8, 0)
-TB.BackgroundColor3 = Color3.new(0, 0, 0)
-TB.BorderColor3 = Color3.new(1, 1, 1)
-TB.BorderSizePixel = 3
-TB.Text = "X"
-TB.BackgroundTransparency = 0 
-TB.MouseButton1Click:connect(function()
-local args = {
-	"Alternate",
-	"Block"
-}
-game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+TB2.MouseButton1Click:Connect(function()
+    local args = {
+        "Alternate",
+        "Block"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
 end)
-TB.TextColor3 = Color3.new(255, 255, 255)
-TB.TextSize = 20
-TB.Font = Enum.Font.Code
-TB.Parent = gui
